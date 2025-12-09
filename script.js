@@ -97,7 +97,7 @@ function openHelp(){
   );
   
   if (userChoice) {
-    // If user clicks OK, go back to first app
+    // Navigate back to first app's home page, edit later if needed
     window.location.href = "https://julietiloh23.github.io/safeWealth/";
   }
 }
