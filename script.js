@@ -145,6 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
 // Optional: If you want to handle direct navigation from external links
 // This ensures the navigation works even when coming from external sites
 window.onload = function() {
-  // Force a check on load to handle direct linking
+  // Force a check on load to handle direct linking alright
   checkURLParams();
 };
