@@ -58,48 +58,15 @@ function showScreen(name){
     };
     titleElement.textContent = titles[name] || 'SafeWealth';
   }
-  
-  // Update URL without reloading (for better UX)
-  updateURLParameter('screen', name);
 }
 
-// Function to update URL parameter without reloading
-function updateURLParameter(key, value) {
-  const url = new URL(window.location);
-  url.searchParams.set(key, value);
-  window.history.pushState({}, '', url);
-}
-
-// Function to check URL parameters on load
-function checkURLParams() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const screen = urlParams.get('screen');
-  
-  // Validate and show screen if valid
-  const validScreens = ['home', 'fx', 'invest', 'spend', 'fraud'];
-  if (screen && validScreens.includes(screen)) {
-    showScreen(screen);
-    return true;
-  }
-  return false;
-}
-
-// Navigation functions - MODIFIED
+// Navigation functions
 function prev(){
-  // Navigate back to first app's home page
-  window.location.href = "https://julietiloh23.github.io/safeWealth/";
+  alert('Back (demo) - This would navigate back in a real app');
 }
 
 function openHelp(){
-  // Show help with option to go back to first app
-  const userChoice = confirm(
-    'This is a demo prototype of SafeWealth features (FX, Spending, Fraud Shield, Investments).\n\nIn a real app, this would open a help center or tutorial.\n\nClick OK to go back to the main dashboard.'
-  );
-  
-  if (userChoice) {
-    // If user clicks OK, go back to first app
-    window.location.href = "https://julietiloh23.github.io/safeWealth/";
-  }
+  alert('This is a demo prototype of SafeWealth features (FX, Spending, Fraud Shield, Investments).\n\nIn a real app, this would open a help center or tutorial.');
 }
 
 // Touch event improvements for mobile
@@ -131,20 +98,6 @@ document.addEventListener('DOMContentLoaded', function() {
     lastTouchEnd = now;
   }, false);
   
-  // Initialize: Check URL params first, default to home if none
-  if (!checkURLParams()) {
-    showScreen('home');
-  }
-  
-  // Listen for browser back/forward button clicks
-  window.addEventListener('popstate', function() {
-    checkURLParams();
-  });
+  // Initialize with home screen
+  showScreen('home');
 });
-
-// Optional: If you want to handle direct navigation from external links
-// This ensures the navigation works even when coming from external sites
-window.onload = function() {
-  // Force a check on load to handle direct linking
-  checkURLParams();
-};
