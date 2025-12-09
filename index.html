@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>SafeWealth — Prototype: FX, Spending & Fraud Shield</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="device" id="device">
+    <div class="header">
+      <button onclick="prev()" class="header-btn" aria-label="Back">←</button>
+      <h3 id="title">SafeWealth</h3>
+      <button onclick="openHelp()" class="header-btn" aria-label="Help">i</button>
+    </div>
+
+    <div class="screen" id="screen">
+      <!-- initial home/dashboard -->
+      <div id="homeScreen" class="screen-content">
+        <div class="card rates">
+          <h4>FX — Live Rates</h4>
+          <div class="rate-row"><div class="tag">USD → NGN</div><div class="gold">₦1,250.00</div></div>
+          <div class="rate-row"><div class="tag">GBP → NGN</div><div class="gold">₦1,520.00</div></div>
+          <div class="rate-row"><div class="tag">EUR → NGN</div><div class="gold">₦1,350.00</div></div>
+          <div class="tag" style="margin-top:8px;">Updated 11:48 AM · <strong>FX window closes by 2:00 PM</strong></div>
+        </div>
+
+        <div class="card">
+          <div class="balance-container">
+            <div>
+              <div class="tag">Account balance</div>
+              <div class="balance-amount">₦ 248,320</div>
+            </div>
+            <div class="quick-actions">
+              <div class="tag">Quick actions</div>
+              <div class="action-icons">
+                <div class="action-icon" onclick="showScreen('fx')">FX</div>
+                <div class="action-icon" onclick="showScreen('invest')">INV</div>
+                <div class="action-icon" onclick="showScreen('spend')">SP</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card invest">
+          <h4>Investments</h4>
+          <div class="invest-list">
+            <div class="invest-item"><div>Treasury Bills</div><div class="tag">Min ₦10,000</div></div>
+            <div class="invest-item"><div>Fixed Deposit</div><div class="tag">Rates up to 12% p.a</div></div>
+            <div class="invest-item"><div>Money Market Fund</div><div class="tag">Low risk</div></div>
+            <div class="invest-item"><div>Equity Growth</div><div class="tag">Higher returns</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FX screen -->
+      <div id="fxScreen" class="screen-content" style="display:none;">
+        <div class="card">
+          <h4>FX Converter</h4>
+          <div class="img-placeholder">
+            <div class="img-text">FX Converter Interface</div>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Preview & Convert</h4>
+          <div class="tag">Select domiciliary account • Select Naira account</div>
+        </div>
+      </div>
+
+      <!-- Invest screen -->
+      <div id="investScreen" class="screen-content" style="display:none;">
+        <div class="card">
+          <h4>Smart Investments</h4>
+          <div class="invest-list">
+            <div class="invest-item"><div>Treasury Bills</div><div class="tag">Short-term government debt</div></div>
+            <div class="invest-item"><div>Fixed Deposit</div><div class="tag">Locked for 1–12 months</div></div>
+            <div class="invest-item"><div>Money Market Fund</div><div class="tag">Liquid funds, low risk</div></div>
+            <div class="invest-item"><div>Equity Growth</div><div class="tag">Diversified stock portfolio</div></div>
+            <div class="invest-item"><div>Target Savings</div><div class="tag">For goals</div></div>
+          </div>
+        </div>
+        <div class="card">
+          <h4>Investor Tips</h4>
+          <div class="tag">We suggest: Treasury Bills for safety; Fixed Deposit for higher yield; Equity for growth. Match product to your risk profile.</div>
+        </div>
+      </div>
+
+      <!-- Spending screen -->
+      <div id="spendScreen" class="screen-content" style="display:none;">
+        <div class="card">
+          <h4>Spending Dashboard</h4>
+          <div class="summary">
+            <div class="bar">
+              <div class="tag">This month</div>
+              <div class="bar-amount">₦ 52,430</div>
+              <div class="tag">Income ₦120,000 · Outflows ₦67,570</div>
+            </div>
+            <div class="bar">
+              <div class="tag">Savings Pocket</div>
+              <div class="bar-amount">₦ 18,200</div>
+              <div class="tag">Auto-save: 5% · Round-up ₦100</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Spending by category</h4>
+          <div class="chart" aria-label="Spending chart by category">
+            <div class="col"><div class="chart-bar" style="height:40%"></div></div>
+            <div class="col"><div class="chart-bar" style="height:80%"></div></div>
+            <div class="col"><div class="chart-bar" style="height:30%"></div></div>
+            <div class="col"><div class="chart-bar" style="height:60%"></div></div>
+            <div class="col"><div class="chart-bar" style="height:50%"></div></div>
+          </div>
+          <div class="chart-labels">
+            <div class="tag">Food</div><div class="tag">Transport</div><div class="tag">Shopping</div><div class="tag">Bills</div><div class="tag">Other</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Budget Suggestions</h4>
+          <div class="tag">You spent most on Food. Suggest: Target Savings or Money Market for emergency buffer. Try reducing takeout by ₦4,800/week.</div>
+        </div>
+      </div>
+
+      <!-- Fraud Screen -->
+      <div id="fraudScreen" class="screen-content" style="display:none;">
+        <div class="card">
+          <h4>Fraud Shield</h4>
+          <div class="shield">
+            <div class="big">🔒</div>
+            <div>
+              <div class="shield-title">Live protection</div>
+              <div class="tag">Real-time monitoring • Biometric step-up • Block card or app with one tap</div>
+              <div class="toggle-container">
+                <span class="toggle">Card: <strong>ON</strong></span>
+                <span class="toggle">Mobile App: <strong>ON</strong></span>
+                <span class="toggle">Transfers: <strong>ON</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h4>Recent Alerts</h4>
+          <div class="tx-list">
+            <div class="tx-item">
+              <div><strong>Large transfer</strong><div class="tag">₦500,000 to new beneficiary — paused</div></div>
+              <div class="tag">Action: Verify</div>
+            </div>
+            <div class="tx-item">
+              <div><strong>New login</strong><div class="tag">Login from Lagos — device unverified</div></div>
+              <div class="tag">Action: Review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav" role="navigation" aria-label="primary navigation">
+      <div class="icon active" id="nav-home" onclick="showScreen('home')" aria-label="Home">🏠</div>
+      <div class="icon" id="nav-invest" onclick="showScreen('invest')" aria-label="Investments">💼</div>
+      <div class="icon" id="nav-spend" onclick="showScreen('spend')" aria-label="Spending">📊</div>
+      <div class="icon" id="nav-fraud" onclick="showScreen('fraud')" aria-label="Fraud Shield">🛡️</div>
+    </div>
+
+    <div class="foot"><a class="link" href="https://julietiloh23.github.io/safeWealth/" target="_blank" rel="noopener">Open your SafeWealth site</a></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
